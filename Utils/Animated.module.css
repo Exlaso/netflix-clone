@@ -1,0 +1,33 @@
+.Animatedsvg {
+
+	font-weight: 700;
+	width: 100%; height: 100%;
+}
+.Animatedsvg .Animatedtext {
+	letter-spacing: .1em;
+	animation: stroke 4s forwards;
+	stroke-width: 2;
+	stroke: #A01212;
+	font-size: 5em;
+	
+}
+@keyframes stroke {
+	0%   {
+		fill: rgba(167, 16, 232, 0); stroke: rgba(160,18,18,1);
+		stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
+	}
+	70%  {fill: rgba(150,27,204,0); stroke: rgba(160,18,18,1); }
+	80%  {fill: rgba(150,27,204,0); stroke: rgba(160,18,18,1); stroke-width: 3; }
+	100% {
+		fill: rgb(241, 18, 2); stroke: rgba(160,18,18,0);
+		stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
+	}
+}
+
+.Animatedwrapper {
+/* background-color: yellow; */
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+};
