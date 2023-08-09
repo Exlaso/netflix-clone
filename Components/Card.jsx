@@ -31,7 +31,7 @@ const Card = ({
         scale: 1.1,
       }}
     >
-      <Link href={href}>
+      <Link href={href} scroll={false}>
           <Image
           onError={Imageerrorhandler}
             className="object-cover"

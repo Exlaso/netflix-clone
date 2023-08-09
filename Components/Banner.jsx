@@ -9,7 +9,7 @@ const Banner = ({
   return (
     <div className="w-full h-[90vh] relative ">
       <div className="absolute z-10 w-full h-full">
-        <div className="flex flex-col justify-center h-full gap-3 px-10 mt-8 w-2/5 max-md:w-3/5">
+        <div className="flex flex-col justify-center w-2/5 h-full gap-3 px-10 mt-8 max-md:w-3/5">
           <div className="flex items-center ">
             <div className="text-6xl font-bold text-red-600 ">N</div>
             <div>S E R I E S</div>
@@ -24,16 +24,16 @@ const Banner = ({
               whileTap={{
                 scale: 0.95,
               }}
-              className="flex items-center justify-center px-5 py-2 text-black bg-white border border-gray-500 rounded-lg w-fit"
+              className="flex items-center justify-center px-5 py-2 text-black bg-white border border-gray-500 rounded-lg invert w-fit"
               type="button"
             >
               <Image
                 alt="play icon"
-                src="/static/icons/play.svg"
-                height={25}
+                src="static/icons/play.svg"
+                height={25} 
                 width={25}
               />
-              <span> Play</span>
+              <span>Play</span>
             </motion.button>
           </Link>
         </div>

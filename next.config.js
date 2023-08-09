@@ -8,9 +8,7 @@ const nextConfig = {
       "i.ytimg.com",
     ],
   },
-  experimental: {
-    serverActions: true,
-  },
+  
 };
 
 module.exports = nextConfig;

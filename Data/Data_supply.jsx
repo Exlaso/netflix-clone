@@ -38,13 +38,12 @@ export const Fetch_youtube_data = async (
 
   try {
     const res = await fetch(baseurl.href);
-
     const data = await res.json();
     return data?.items.map((e) => {
       return {
         Title: e?.snippet?.title,
         Imgurl: e?.snippet?.thumbnails?.high?.url,
-        id: e?.etag,
+        id: e?.id?.videoId,
       };
     });
   } catch (error) {

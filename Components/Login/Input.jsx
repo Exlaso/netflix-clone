@@ -64,10 +64,12 @@ const Input = () => {
       whileTap={{
         scale: .9
       }}
-        type="submit"
-        className="p-2 bg-red-900 rounded"
-      >
+        type="submit" 
+      > 
+      <div className="p-2 rounded bg-slate-800">
+
       {Isloading? <div className="custom-loader"></div>:"Verify"} 
+      </div>
       </motion.button>
     </form>
   );
