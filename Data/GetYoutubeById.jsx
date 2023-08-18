@@ -1,7 +1,6 @@
-import React from "react";
 
 const GetYoutubeById = async (id) => {
-  const youtube_api = process.env.youtube_api2;
+  const youtube_api = process.env.youtube_api1;
   const baseurl = new URL("https://youtube.googleapis.com/youtube/v3/videos");
   baseurl.searchParams.set("part", "snippet,contentDetails,statistics");
   baseurl.searchParams.set("key", youtube_api);

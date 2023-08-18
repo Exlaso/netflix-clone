@@ -6,31 +6,39 @@ import { motion } from "framer-motion";
 const Input = () => {
   const router = useRouter();
   const [Message, setMessage] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Isloading, setIsloading] = useState(false)
+  const [phoneNumber, setphoneNumber] = useState("");
+  const [Isloading, setIsloading] = useState(false);
   const InputHandler = (e) => {
-    setEmail(e.target.value);
+    setphoneNumber(e.target.value);
     setMessage("");
   };
   const FormsubmitHandler = async (e) => {
-    setIsloading(true)
+    setIsloading(true);
     e.preventDefault();
-    if (Email.length === 0) {
+    if (phoneNumber.length === 0) {
       setMessage("Enter the Valid Phone Number");
-      setIsloading(false)
+      setIsloading(false);
     } else {
       try {
-        const DID = await VerifyUser(Email)
+        const DID = await VerifyUser(phoneNumber);
         // const DID = true;
-     
-      if (DID) {
-        router.push("/");
-        setIsloading(false)
+
+        if (DID) {
+          const res = await fetch('/api',{
+            method:"POST",
+            headers:{    
+              "Authorization": `Bearer ${DID}`,
+              "Content-Type":"application/json"
+            }
+          })
+          const data = await res.json()
+          router.push("/");
+          setIsloading(false);
+        }
+      } catch (error) {
+        console.error(error);
+        setIsloading(false);
       }
-    } catch (error) {
-      console.error(error);
-      setIsloading(false)
-    }
     }
   };
   return (
@@ -40,37 +48,38 @@ const Input = () => {
       onSubmit={FormsubmitHandler}
     >
       <label
-        htmlFor="email"
+        htmlFor="phoneNumber"
         className="text-md"
       >
         Phone Number
       </label>
       <input
-        type="number"
-        value={Email}
-        id="email"
+        type="text"
+        value={phoneNumber}
+        id="phoneNumber"
         className="p-2 duration-150 bg-transparent border border-t-0 border-b-2 border-l-0 border-r-0 border-white outline-none "
-        placeholder="9106011023"
+        placeholder="Phone no."
         onChange={InputHandler}
       />
       <p>{Message}</p>
       <motion.button
-      initial={{
-        opacity:1
-      }}
-      whileHover={{
-        opacity: .8
-      }}
-      whileTap={{
-        scale: .9
-      }}
-        type="submit" 
-      > 
-      <div className="p-2 rounded bg-slate-800">
-
-      {Isloading? <div className="custom-loader"></div>:"Verify"} 
-      </div>
+        initial={{
+          opacity: 1,
+        }}
+        whileHover={{
+          opacity: 0.8,
+        }}
+        whileTap={{
+          scale: 0.9,
+        }}
+        type="submit"
+      >
+        <div className="p-2 rounded bg-slate-800">
+          {Isloading ? <div className="custom-loader"></div> : "Verify"}
+        </div>
       </motion.button>
+        <span className="text-center">We only Support Passwordless Login</span>
+        <span className="text-center">Without Any account Creation</span>
     </form>
   );
 };

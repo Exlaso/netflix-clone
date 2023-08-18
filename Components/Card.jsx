@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { motion } from "framer-motion";
 import Image from "next/legacy/image";
 import Link from "next/link";
@@ -10,11 +10,11 @@ const Card = ({
   href = "#",
   size = "medium",
 }) => {
-  const [ImgUrl, setImgUrl] = useState(imgurl)
-  const Imageerrorhandler = e => {
-    console.log('error');
-    setImgUrl('/static/logo/netflix.png')
-  }
+  const [ImgUrl, setImgUrl] = useState(imgurl);
+  const Imageerrorhandler = (e) => {
+    console.error("error");
+    setImgUrl("/static/logo/netflix.png");
+  };
   const classmap = {
     large: "lgcards",
     medium: "mdcards",
@@ -22,23 +22,25 @@ const Card = ({
   };
   return (
     <motion.div
-      className={`flex flex-grow w-40 rounded-lg overflow-hidden relative shadow-lg  ${classmap[size]} `}
+      className={`flex w-40 rounded-lg overflow-hidden relative shadow-lg  ${classmap[size]} `}
       initial={{
-        zIndex: 10
+        zIndex: 10,
       }}
       whileHover={{
         zIndex: 20,
         scale: 1.1,
       }}
     >
-      <Link href={href} scroll={false}>
-          <Image
+      <Link
+        href={href}
+      >
+        <Image
           onError={Imageerrorhandler}
-            className="object-cover"
-            src={ImgUrl}
-      layout="fill"
-            alt={title + " Thumbail"}
-          />
+          className="object-cover"
+          src={ImgUrl}
+          layout="fill"
+          alt={title + " Thumbail"}
+        />
       </Link>
     </motion.div>
   );

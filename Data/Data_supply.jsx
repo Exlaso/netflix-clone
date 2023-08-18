@@ -34,7 +34,6 @@ export const Fetch_youtube_data = async (
   baseurl.searchParams.set("key", youtube_api);
   baseurl.searchParams.set("q", query);
   baseurl.searchParams.set("maxResults", noofres);
-  console.log(baseurl.href);
 
   try {
     const res = await fetch(baseurl.href);

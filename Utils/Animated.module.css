@@ -5,7 +5,7 @@
 }
 .Animatedsvg .Animatedtext {
 	letter-spacing: .1em;
-	animation: stroke 4s forwards;
+	animation: stroke forwards; 
 	stroke-width: 2;
 	stroke: #A01212;
 	font-size: 5em;

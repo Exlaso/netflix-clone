@@ -1,9 +1,6 @@
 @import "tailwindcss/base";
-
 @import "tailwindcss/components";
-
 @import "tailwindcss/utilities";
-
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
@@ -13,7 +10,7 @@
 /* @media (prefers-color-scheme: dark) {
  
 } */
-.tshadow{
+.tshadow {
   text-shadow: 1px 1px 2px black;
 }
 /* Chrome, Safari, Edge, Opera */
@@ -27,19 +24,23 @@ input::-webkit-inner-spin-button {
   margin: 0 auto;
   height: 25px;
   border-radius: 50%;
-  background: 
-    radial-gradient(farthest-side,#766DF4 94%,#0000) top/4px 4px no-repeat,
-    conic-gradient(#0000 30%,#766DF4);
-  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 4px),#000 0);
-  animation:s3 1s infinite linear;
+  background: radial-gradient(farthest-side, #766df4 94%, #0000) top/4px 4px
+      no-repeat,
+    conic-gradient(#0000 30%, #766df4);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+  animation: s3 1s infinite linear;
 }
 
-@keyframes s3{ 
-  100%{transform: rotate(1turn)}
+
+
+@keyframes s3 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -49,21 +50,22 @@ body {
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
-    )rgb(var(--background-start-rgb));
-    /* min-height: 350vh; */
-    font-family: 'Inter', sans-serif;
+    )
+    rgb(var(--background-start-rgb));
+  /* min-height: 350vh; */
+  font-family: "Inter", sans-serif;
 }
 .scrollbaronhover::-webkit-scrollbar-thumb {
-  background:  transparent;
+  background: transparent;
 }
 .scrollbaronhover:hover::-webkit-scrollbar-thumb {
-  background:  gray;
+  background: gray;
 }
 
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
-  transition-duration:  .3s;
+  transition-duration: 0.3s;
   height: 5px;
 }
 
@@ -75,25 +77,24 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  transition-duration:  .3s;
-  background:  gray;
+  transition-duration: 0.3s;
+  background: gray;
   border-radius: 10px;
 }
 .stroke1 {
-  -webkit-text-stroke: .5px black;
+  -webkit-text-stroke: 0.5px black;
 }
-.smcards{
+.smcards {
   min-width: 18rem;
   flex-basis: 18rem;
   min-height: 11rem;
 }
-.mdcards{
-
+.mdcards {
   min-width: 10rem;
   flex-basis: 10rem;
   min-height: 18rem;
 }
-.lgcards{
+.lgcards {
   min-width: 15rem;
   flex-basis: 18rem;
   min-height: 25rem;
