@@ -4,24 +4,25 @@ import Card from "./Card";
 
 const FavouriteVideos = () => {
   const [videodata, setVideodata] = useState([]);
-  const FetchVideos = async () => {
-    const res = await fetch("/api/GetFavouritevideos",{
-      headers: {
-        'cache-control': 'no-cache'
-      }
-    });
-    const data = await res.json();
-    setVideodata(data?.YTData);
-  };
 
+  const FetchLikedVideos = async () => {
+    const res = await fetch("/api/GetFavouritevideos");
+    const data = await res.json();
+    setVideodata(() => {
+      return data?.YTData ? data?.YTData : [];
+    });
+  };
   useEffect(() => {
-    FetchVideos();
+    FetchLikedVideos();
 
     return () => {};
   }, []);
-  return videodata.length === 0 ? <h2 className="text-xl">No Video Liked yet!</h2> : (
+
+  return videodata?.length === 0 ? (
+    <h2 className="text-xl">No Video Liked yet!</h2>
+  ) : (
     <div className="flex flex-wrap gap-5">
-      {videodata.map((e) => {
+      {videodata?.map((e) => {
         return (
           <Card
             title={e.title}
