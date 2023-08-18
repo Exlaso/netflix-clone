@@ -6,7 +6,11 @@ const FavouriteVideos = () => {
   const [videodata, setVideodata] = useState([]);
 
   const FetchLikedVideos = async () => {
-    const res = await fetch("/api/GetFavouritevideos");
+    const res = await fetch("/api/GetFavouritevideos", {
+      headers: {
+        "cache-control": "no-cache",
+      },
+    });
     const data = await res.json();
     setVideodata(() => {
       return data?.YTData ? data?.YTData : [];
