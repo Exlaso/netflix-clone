@@ -5,9 +5,9 @@
   export const POST = async (req) => {
 
     try {
-      const header = req?.headers?.get("authorization");
-      const didtoken = header.substring(7);
-      const metadata = await magicAdmin.users.getMetadataByToken(didtoken)
+      const tokenwithbearer = req?.headers?.get("authorization");
+      const didtoken = tokenwithbearer.substring(7);
+      const metadata = await magicAdmin?.users?.getMetadataByToken(didtoken)
       const JwtToken = jwt.sign(
         {
           ...metadata,

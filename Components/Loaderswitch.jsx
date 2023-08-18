@@ -4,17 +4,19 @@ import AnimatedText from "@/Utils/AnimatedText";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const Loaderswitch = ({children }) => {
+const Loaderswitch = ({ children }) => {
   const router = useRouter();
   const [Isloading, setIsloading] = useState(true);
 
   const checklogstatus = async () => {
-    let Isloged = await magicClient?.user?.isLoggedIn();
-    // const Isloged = true; 
+    const Isloged = await magicClient?.user?.isLoggedIn();
+    // const Isloged = true;
     if (!Isloged) {
       router.push("/login");
     }
-    setIsloading(false);
+    setTimeout(() => {
+      setIsloading(false);
+    }, 500);
     return null;
   };
   useEffect(() => {
