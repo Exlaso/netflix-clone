@@ -1,9 +1,7 @@
 import Banner from "@/Components/Banner";
 import CardContainer from "@/Components/CardContainer";
 import Nav from "@/Components/Nav/Nav";
-import WatchAgainContainer from "@/Components/WatchAgainContainer";
 import { Fetch_youtube_data } from "@/Data/Data_supply";
-import {redirect} from "next/navigation";
 import {cookies} from "next/headers";
 
 
