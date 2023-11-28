@@ -40,7 +40,7 @@ export const GET = async (req) => {
     const YTData = [];
     const tranlatetoytdetails = await FetchedVideos.map(async (video) => {
 
-      const Videodata = await GetYoutubeById(video.video_id);
+      const Videodata = await GetYoutubeById(video?.video_id);
 
       YTData.push(Videodata);
       return video.video_id 

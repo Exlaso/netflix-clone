@@ -8,7 +8,7 @@ const CardContainer = ({ size, data = [], className, title }) => {
       <div
         className={`flex gap-2 p-2 overflow-y-hidden overflow-x-scroll scrollbaronhover`}
       >
-        {data.map((e) => {
+        {data?.map((e) => {
           return (
             <Card
               id={e.id}
