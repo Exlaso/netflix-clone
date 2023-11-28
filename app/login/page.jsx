@@ -3,6 +3,8 @@ import Nav from "@/Components/Nav/Nav";
 import Image from "next/image";
 import React from "react";
 
+
+
 const page = () => {
   return (
     <div className="relative h-screen">
