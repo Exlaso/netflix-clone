@@ -2,6 +2,8 @@ import GetYoutubeById from "@/Data/GetYoutubeById";
 import {LikedVideos} from "@/Lib/db/hasura";
 import {NextResponse} from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export const GET = async (req) => {
     try {
        const token = new URL(req.url).searchParams.get("token");
