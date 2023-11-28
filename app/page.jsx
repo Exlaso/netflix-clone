@@ -37,7 +37,7 @@ export default async function Home() {
         data={Travel}
         size="small"
       />
-        {token && <WatchAgainContainer/>}
+        {/*{token && <WatchAgainContainer/>}*/}
       <CardContainer
         title={"Dubai Fireworks"}
         data={Dubai_Fireworks}
