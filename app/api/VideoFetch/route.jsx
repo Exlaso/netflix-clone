@@ -41,11 +41,16 @@ export const GET = async () => {
     const FetchedVideos = await WatchedVideos(token);
     const YTData = [];
     const tranlatetoytdetails = await FetchedVideos.map(async (video) => {
+      console.log(video.video_id)
+      try {
+        const Videodata = await GetYoutubeById(video?.video_id);
 
-      const Videodata = await GetYoutubeById(video?.video_id);
-
-      YTData.push(Videodata);
-      return video.video_id 
+        YTData.push(Videodata);
+        return video.video_id
+      }catch (e){
+        console.error(e)
+        return []
+      }
     });
 
     return Promise.all(tranlatetoytdetails).then(() => {

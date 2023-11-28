@@ -1,6 +1,6 @@
 
 const GetYoutubeById = async (id) => {
-  const youtube_api = process.env.youtube_api1;
+  const youtube_api = process.env.youtube_api2;
   const baseurl = new URL("https://youtube.googleapis.com/youtube/v3/videos");
   baseurl.searchParams.set("part", "snippet,contentDetails,statistics");
   baseurl.searchParams.set("key", youtube_api);
@@ -10,7 +10,8 @@ const GetYoutubeById = async (id) => {
     const res = await fetch(baseurl.href);
 
     const data = await res.json();
-    const arrofdata =  data?.items.map((e) => {
+    console.log({data})
+    const arrofdata =  data?.items?.map((e) => {
       return {
         title: e?.snippet?.title,
         description: e?.snippet?.description,

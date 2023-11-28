@@ -38,8 +38,8 @@ export const Fetch_youtube_data = async (
   try {
     const res = await fetch(baseurl.href);
     const data = await res.json();
-    if (!data?.items) return [];
-    return data?.items.map((e) => {
+    if (!data?.items) new Error(data);
+    return data?.items?.map((e) => {
       return {
         Title: e?.snippet?.title,
         Imgurl: e?.snippet?.thumbnails?.high?.url,
