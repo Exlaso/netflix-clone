@@ -3,6 +3,8 @@ import CardContainer from "@/Components/CardContainer";
 import Nav from "@/Components/Nav/Nav";
 import WatchAgainContainer from "@/Components/WatchAgainContainer";
 import { Fetch_youtube_data } from "@/Data/Data_supply";
+import {redirect} from "next/navigation";
+import {cookies} from "next/headers";
 
 
 
@@ -12,6 +14,7 @@ export default async function Home() {
   const DolbyVision = await Fetch_youtube_data("4k Dolby Vision ", 15);
   const Dubai_Fireworks = await Fetch_youtube_data("Dubai Firework 4k", 15);
   const One_Piece = await Fetch_youtube_data("one piece", 15);
+    const token = cookies().get("token");
 
   return (
     <main>
@@ -34,7 +37,7 @@ export default async function Home() {
         data={Travel}
         size="small"
       />
-      <WatchAgainContainer />
+        {token && <WatchAgainContainer/>}
       <CardContainer
         title={"Dubai Fireworks"}
         data={Dubai_Fireworks}
