@@ -17,24 +17,17 @@ const Likeddisliked = ({ id }) => {
         error: "Something Went Wrong 🤯",
       }
     );
-    console.log(await res.json());
   };
 
   const FetchLikeDetails = async () => {
-    const res = await toast.promise(fetch(`/api/UpdateLike?video_id=${id}`), {
-      pending: "Getting Like & Dislike Information",
-      success: "Data Received 👌",
-      error: "Something Went Wrong 🤯",
-    });
+    const res = await fetch(`/api/UpdateLike?video_id=${id}`)
     const status = await res.json();
     setLikeState(await status?.status);
-    console.log(await status?.status);
   };
   const InsertVideo = async () => {
     const videostats = await fetch(`/api/VideoFetch?videoid=${id}`, {
       method: "POST",
     });
-    console.log(await videostats.json());
   };
   useEffect(() => {
     InsertVideo();
@@ -49,7 +42,7 @@ const Likeddisliked = ({ id }) => {
           UpdateLike(1);
           setLikeState(1);
         }}
-        disabled={LikeState === null ? true : false}
+        disabled={LikeState === null}
         
         type="button"
       className="flex flex-col items-center justify-center gap-3 disabled:opacity-20"
@@ -60,7 +53,7 @@ const Likeddisliked = ({ id }) => {
         I Like The Video
       </button>
       <button
-       disabled={LikeState === null ? true : false}
+       disabled={LikeState === null}
         
         onClick={() => {
           UpdateLike(2);

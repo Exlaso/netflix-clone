@@ -2,25 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "./Card";
 
-const FavouriteVideos = () => {
-  const [videodata, setVideodata] = useState([]);
+const FavouriteVideos = ({data}) => {
+  const [videodata, setVideodata] = useState(data);
 
-  const FetchLikedVideos = async () => {
-    const res = await fetch("/api/GetFavouritevideos", {
-      headers: {
-        "cache-control": "no-cache",
-      },
-    });
-    const data = await res.json();
-    setVideodata(() => {
-      return data?.YTData ? data?.YTData : [];
-    });
-  };
-  useEffect(() => {
-    FetchLikedVideos();
 
-    return () => {};
-  }, []);
 
   return videodata?.length === 0 ? (
     <h2 className="text-xl">No Video Liked yet!</h2>
