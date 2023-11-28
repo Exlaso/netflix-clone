@@ -23,7 +23,7 @@ export const Fetch_youtube_data = async (
   query = " ",
   noofres = 25,
 ) => {
-  const youtube_api = process.env.youtube_api1;
+  const youtube_api = process.env.youtube_api2;
   const baseurl = new URL("https://youtube.googleapis.com/youtube/v3/search?");
   baseurl.searchParams.set("videoDefinition", "high");
   baseurl.searchParams.set("part", "snippet");
@@ -38,6 +38,7 @@ export const Fetch_youtube_data = async (
   try {
     const res = await fetch(baseurl.href);
     const data = await res.json();
+    if (!data?.items) return [];
     return data?.items.map((e) => {
       return {
         Title: e?.snippet?.title,
