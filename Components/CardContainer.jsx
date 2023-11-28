@@ -11,11 +11,11 @@ const CardContainer = ({ size, data = [], className, title }) => {
         {data?.map((e) => {
           return (
             <Card
-              id={e.id}
-              key={e.id}
-              title={e.Title}
-              imgurl={e.Imgurl}
-              href={`/Video/${e.id}`}
+              id={e?.id}
+              key={e?.id}
+              title={e?.Title}
+              imgurl={e?.Imgurl}
+              href={`/Video/${e?.id}`}
               size={size}
             />
           );

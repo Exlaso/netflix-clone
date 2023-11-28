@@ -4,7 +4,7 @@ import Image from "next/legacy/image";
 import Link from "next/link";
 import React, { useState } from "react";
 
-const Card = ({
+const    Card = ({
   imgurl = "/static/logo/netflix.png",
   title = "/",
   href = "#",

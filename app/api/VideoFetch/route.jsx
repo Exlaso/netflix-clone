@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { InsertVideo, IsVideoExists, WatchedVideos } from "@/Lib/db/hasura";
 import GetYoutubeById from "@/Data/GetYoutubeById";
+import {cookies} from "next/headers";
+export const dynamic = "force-dynamic";
 export const POST = async (req) => {
   try {
     if (!req.cookies.get("token")) {
@@ -30,12 +32,12 @@ export const POST = async (req) => {
   }
 };
 
-export const GET = async (req) => {
+export const GET = async () => {
   try {
-    if (!req.cookies.get("token")) {
+    const token = cookies().get("token")?.value;
+    if (!token) {
          return NextResponse.json({ Error: "Cookie Not Found" }, { status: 403 });
     }
-    const token = req.cookies.get("token").value;
     const FetchedVideos = await WatchedVideos(token);
     const YTData = [];
     const tranlatetoytdetails = await FetchedVideos.map(async (video) => {
