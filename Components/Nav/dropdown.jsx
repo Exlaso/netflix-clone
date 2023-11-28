@@ -1,3 +1,4 @@
+"use client"
 import { magicClient } from "@/Lib/MagicLink";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,6 +31,7 @@ const DropDown = () => {
     e.preventDefault();
     try {
       magicClient.user.logout();
+      await fetch("/api/Signout",{method:"DELETE"});
       router.push("/login");
     } catch (error) {
       console.error(error);

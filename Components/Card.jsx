@@ -11,7 +11,7 @@ const Card = ({
   size = "medium",
 }) => {
   const [ImgUrl, setImgUrl] = useState(imgurl);
-  const Imageerrorhandler = (e) => {
+  const Imageerrorhandler = () => {
     console.error("error");
     setImgUrl("/static/logo/netflix.png");
   };

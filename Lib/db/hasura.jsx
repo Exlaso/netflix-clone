@@ -62,7 +62,9 @@ export const InsertVideo = async (jwt_token, user_id, video_id) => {
 };
 
 export const LikedVideos = async (jwt_token) => {
-  const res = await fetchGraphQL("LikedVideos", jwt_token);
+  const res = await fetchGraphQL("LikedVideos", jwt_token,{
+    userid:`${Math.random()}`
+  });
   return res?.data?.stats;
 };
 
@@ -147,8 +149,8 @@ query WatchedVideos {
 }
 
 
-query LikedVideos {
-  stats(where: {favourite: {_eq: 1}}) {
+query LikedVideos($userid:String!) {
+  stats(where: {favourite: {_eq: 1},_not:{user_id:{_eq:$userid}}}) {
     video_id
   }
 }

@@ -5,7 +5,7 @@ import GetYoutubeById from "@/Data/GetYoutubeById";
 export const POST = async (req) => {
   try {
     if (!req.cookies.get("token")) {
-      return NextResponse.json({ Error: "Cookie Not Found" }, { status: 403 });
+         return NextResponse.json({ Error: "Cookie Not Found" }, { status: 403 });
     } else {
       const token = req.cookies.get("token").value;
       const Decoded_token = jwt.verify(token, process.env.JWT_KEY);
@@ -33,7 +33,7 @@ export const POST = async (req) => {
 export const GET = async (req) => {
   try {
     if (!req.cookies.get("token")) {
-      return NextResponse.json({ Error: "Cookie Not Found" }, { status: 403 });
+         return NextResponse.json({ Error: "Cookie Not Found" }, { status: 403 });
     }
     const token = req.cookies.get("token").value;
     const FetchedVideos = await WatchedVideos(token);
