@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // directUrl = env("DIRECT_DATABASE_URL")
+}
+
+/// This model or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+
+model Userstats {
+  id        Int      @id @default(autoincrement())
+  user_id   String
+  video_id  String?
+  video_url String
+  favourite Boolean?
+  watched   Boolean  @default(false)
+  video     video?   @relation(fields: [videoId], references: [id])
+  videoId   Int?
+
+  @@unique([user_id, video_id])
+}
+
+model video {
+  id          Int         @id @default(autoincrement())
+  title       String
+  Imgurl      String
+  videoID     String      @unique
+  description String
+  Userstats   Userstats[]
+}

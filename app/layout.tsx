@@ -1,6 +1,7 @@
 import "./globals.css";
 import "./output.css";
 import {Metadata} from "next";
+import {ClerkProvider} from "@clerk/nextjs";
 
 
 export const dynamic = "force-dynamic"
@@ -42,8 +43,10 @@ export default function RootLayout({children}) {
     return (
         <html lang="en">
         <body>
+        <ClerkProvider>
 
-        {children}
+            {children}
+        </ClerkProvider>
         </body>
         </html>
     );
