@@ -5,12 +5,29 @@ import Like_icon from "@/Components/Like_icon";
 import {updateLike} from "@/app/actions";
 
 const Likeddisliked = ({id, userid, isliked}: { userid: string, id: string, isliked: boolean }) => {
-    const [LikeState, setLikeState] = useState<boolean | null>(isliked);
+    const [LikeState, setLikeState] = useState<1 | 2 | null>((() => {
+
+        if (!isliked) {
+            return null
+        } else {
+            return isliked ? 1 : 2
+        }
+    })());
+    console.log("=================Likeddisliked========================")
+    console.log(isliked, " server")
+    console.log(LikeState, " client")
+    console.log("======================================================")
 
     useEffect(() => {
 
         const Status = () => {
-            updateLike(userid, LikeState, id)
+            updateLike(userid, (() => {
+                if (!LikeState) {
+                    return null
+                } else {
+                    return LikeState === 1;
+                }
+            })(), id)
         }
         const timeoutid = setTimeout(Status, 800);
         return () => {
@@ -23,27 +40,37 @@ const Likeddisliked = ({id, userid, isliked}: { userid: string, id: string, isli
         <div className="flex w-full justify-evenly">
             <button
                 onClick={() => {
-                    setLikeState(true);
+                    if (LikeState !== 1) {
+
+                        setLikeState(1);
+                    } else {
+                        setLikeState(null);
+                    }
                 }}
 
                 type="button"
                 className="flex flex-col items-center justify-center gap-3 disabled:opacity-20"
             >
                 <div className="flex items-center justify-center border-2 border-white rounded-full w-14 h-14">
-                    <Like_icon selected={LikeState === null ? 0 : LikeState ? 1 : 0}/>
+                    <Like_icon selected={LikeState}/>
                 </div>
                 I Like The Video
             </button>
             <button
 
                 onClick={() => {
-                    setLikeState(false);
+                    if (LikeState !== 2) {
+
+                        setLikeState(2);
+                    } else {
+                        setLikeState(null);
+                    }
                 }}
                 type="button"
                 className="flex flex-col items-center justify-center gap-3 disabled:opacity-20"
             >
                 <div className="flex items-center justify-center border-2 border-white rounded-full w-14 h-14">
-                    <Dislike_icon selected={LikeState === null ? 0 : LikeState ? 0 : 1}/>
+                    <Dislike_icon selected={LikeState}/>
                 </div>
                 I Dislike The Video
             </button>
