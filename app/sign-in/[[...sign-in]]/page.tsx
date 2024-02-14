@@ -2,6 +2,7 @@ import { SignIn } from "@clerk/nextjs";
 import Image from "next/image";
 import Nav from "@/Components/Nav/Nav";
 import React from "react";
+import {placeholderURL} from "@/Utils/shimmer";
 
 const Page = () => {
     return (
@@ -11,6 +12,8 @@ const Page = () => {
                 alt="netflix background "
                 className="object-cover brightness-50 blur-sm -z-30"
                 layout="fill"
+                placeholder={"blur"}
+                blurDataURL={placeholderURL}
             />
             <Nav logoonly={true}  />
             <div className="flex items-center justify-center w-full h-full">
