@@ -2,27 +2,7 @@
 import {prisma} from "@/Prisma/Prisma";
 import {Prisma} from "@prisma/client";
 
-export const getFavouriteVideos = async (user_id: string) => {
-    try {
-        return (await prisma.userstats.findMany({
-            where: {
-                user_id,
-                favourite: true,
-            },
-            include: {
-                video: true
-            }
-        }))
-    } catch (error) {
-        if (error instanceof Error) {
-            console.error(error)
-            return []
 
-
-        }
-    }
-}
-export type getFavouriteVideosType = Prisma.PromiseReturnType<typeof getFavouriteVideos>
 
 export const updateLike = (user_id: string, updateLike: boolean, video_id: string) => {
     return prisma.userstats.update({

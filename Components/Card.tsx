@@ -3,6 +3,8 @@ import {motion} from "framer-motion";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import React, {useState} from "react";
+import {placeholderURL} from "@/Utils/shimmer";
+
 
 const Card = ({
                   id,
@@ -42,6 +44,8 @@ const Card = ({
                 href={href}
             >
                 <Image
+                    placeholder={"blur"}
+                    blurDataURL={placeholderURL}
                     onError={Imageerrorhandler}
                     className="object-cover"
                     src={ImgUrl}

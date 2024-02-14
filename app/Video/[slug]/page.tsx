@@ -8,9 +8,10 @@ import {auth} from "@clerk/nextjs";
 import {GetMovieByID} from "@/app/actions";
 import {TMDB_IMAGE_PREFIX} from "@/Components/CardContainer";
 import Image from "next/image";
-
+import {placeholderURL} from "@/Utils/shimmer";
+export const dynamic = "force-dynamic"
 export async function generateMetadata({params}) {
-    const id:string = params.slug.toString().toLowerCase();
+    const id: string = params.slug.toString().toLowerCase();
     return {
         title: `Netflix/${id}`,
     };
@@ -38,9 +39,9 @@ const GetMoviesByID = async (ID: string): Promise<GetMovieByID> => {
 }
 
 const Videoid = async ({params}) => {
-    const Videoid = params.slug;
+    const videoID = params.slug;
 
-    const videodata = await GetMoviesByID(Videoid)
+    const tmdbVideoData = await GetMoviesByID(videoID)
     const {userId} = auth();
 
 
@@ -48,7 +49,7 @@ const Videoid = async ({params}) => {
         where: {
             user_id_video_id: {
                 user_id: userId,
-                video_id: Videoid
+                video_id: videoID
             }
         },
         select: {
@@ -56,28 +57,34 @@ const Videoid = async ({params}) => {
             watched: true
         }
     });
+    const totalLikes = await prisma.userstats.count({
+        where: {
+            favourite: true,
+            video_id: videoID
+        }
+    });
     if (!res?.watched) {
-        prisma.userstats.create({
+        await prisma.userstats.create({
             data: {
                 video: {
                     connectOrCreate: {
                         create: {
-                            title: videodata.title,
-                            Imgurl: videodata.poster_path,
-                            description: videodata.overview,
-                            videoID: Videoid
+                            title: tmdbVideoData.title,
+                            Imgurl: tmdbVideoData.poster_path ?? "",
+                            description: tmdbVideoData.overview,
+                            videoID: videoID
                         },
                         where: {
-                            videoID: Videoid
+                            videoID: videoID
                         }
                     }
                 },
                 user_id: userId,
-                video_id: Videoid,
+                video_id: videoID,
                 watched: true,
-                video_url: Videoid
+                video_url: videoID
             }
-        }).then()
+        })
     }
 
     return (
@@ -100,22 +107,25 @@ const Videoid = async ({params}) => {
                 <Image
                     width={700}
                     height={700}
-                    alt={videodata.title}
+                    alt={tmdbVideoData.title}
                     className="w-full rounded-lg object-contain  aspect-video"
-                    src={TMDB_IMAGE_PREFIX + "/" + videodata.poster_path}
+                    src={TMDB_IMAGE_PREFIX + "/" + tmdbVideoData.poster_path}
+                    placeholder={"blur"}
+                    blurDataURL={placeholderURL}
                 ></Image>
-                <Likeddisliked id={Videoid} userid={userId} isliked={res?.favourite}/>
+                <Likeddisliked id={videoID} userid={userId} isliked={res?.favourite}/>
                 <div className="grid grid-cols-2 gap-10 max-md:grid-cols-1">
 
                     <div className="flex flex-col gap-2 h-[50vh] overflow-scroll overflow-x-hidden p-3 ">
-                        <p className="text-3xl font-bold">{videodata?.title}</p>
-                        <p>{videodata.overview}</p>
+                        <p className="text-3xl font-bold">{tmdbVideoData?.title}</p>
+                        <p>{tmdbVideoData.overview}</p>
                     </div>
                     <div className="flex flex-col gap-2">
                         <ul>
-                            <li>Genre : {videodata.budget}</li>
-                            {/*<li>Upload Date: {videodata?.publishtime}</li>*/}
-                            {/*<li>Views: {Convnumb(videodata?.viewcount)}</li>*/}
+                            <li>Likes: {totalLikes}</li>
+                            <li>Release Date: {new Date(tmdbVideoData.release_date).toLocaleString("IN", {
+                                dateStyle: "medium"
+                            })}</li>
                         </ul>
                     </div>
                 </div>

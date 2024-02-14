@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
 import Card from "./Card";
-import {getFavouriteVideosType} from "@/app/actions";
 import {TMDB_IMAGE_PREFIX} from "@/Components/CardContainer";
+import {getFavouriteVideosType} from "@/app/browse/my-list/page";
 
 
 const FavouriteVideos = ({data}: { data: getFavouriteVideosType }) => {
@@ -17,7 +17,7 @@ const FavouriteVideos = ({data}: { data: getFavouriteVideosType }) => {
                         title={e.video.title}
                         key={e.video.id}
                         id={e.video.id}
-                        href={`/Video/${e.video.id}`}
+                        href={`/Video/${e.video.videoID}`}
                         imgurl={TMDB_IMAGE_PREFIX + "/" + e.video.Imgurl}
                         size="small"
                     ></Card>
