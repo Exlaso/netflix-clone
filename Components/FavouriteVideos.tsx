@@ -10,7 +10,7 @@ const FavouriteVideos = ({data}: { data: getFavouriteVideosType }) => {
     return data?.length === 0 ? (
         <h2 className="text-xl">No Video Liked yet!</h2>
     ) : (
-        <div className="flex flex-wrap gap-5">
+        <div className="grid grid-cols-6 gap-5">
             {data?.map((e) => {
                 return (
                     <Card

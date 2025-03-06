@@ -6,13 +6,21 @@ import {GetMoviesByQuery} from "@/app/actions";
 
 export default async function Home() {
 
-    const horror = await GetMoviesByQuery("horror");
-    const sciFi = await GetMoviesByQuery("sciFi");
-    const funny = await GetMoviesByQuery("funny");
-    const mystery = await GetMoviesByQuery("mystery");
-    console.log("=================page========================")
-    console.log(horror)
-    console.log("======================================================")
+    const horror_snapshot = GetMoviesByQuery("horror");
+    const sciFi_snapshot = GetMoviesByQuery("sciFi");
+    const funny_snapshot = GetMoviesByQuery("funny");
+    const mystery_snapshot = GetMoviesByQuery("mystery");
+
+    const [
+        horror,
+        sciFi,
+        funny,
+        mystery
+    ] = await Promise.all([horror_snapshot,
+        sciFi_snapshot,
+        funny_snapshot,
+        mystery_snapshot])
+
     return (
         <main className={"pb-20"}>
             <Nav/>

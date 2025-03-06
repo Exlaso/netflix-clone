@@ -1,6 +1,6 @@
 import Nav from "@/Components/Nav/Nav";
 import React from "react";
-import {auth} from "@clerk/nextjs";
+import {auth} from "@clerk/nextjs/server";
 import FavouriteVideos from "@/Components/FavouriteVideos";
 import {prisma} from "@/Prisma/Prisma";
 import {Prisma} from "@prisma/client";
@@ -29,7 +29,7 @@ export type getFavouriteVideosType = Prisma.PromiseReturnType<typeof getFavourit
 export const dynamic = "force-dynamic"
 
 const page = async () => {
-    const {userId} = auth()
+    const {userId} = await auth()
     const favouritedVideos = await getFavouriteVideos(userId);
     return (
         <div>

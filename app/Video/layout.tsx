@@ -1,11 +1,11 @@
-import {redirect} from "next/navigation";
-import {auth} from "@clerk/nextjs";
+"use client"
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 const Layout = ({children}) => {
-      const { userId } = auth();
-    if (!userId) {
-        redirect("/sign-in");
-    }
-    return children
+
+    return <QueryClientProvider client={queryClient}>
+        {children}
+    </QueryClientProvider>
 }
 export default Layout;

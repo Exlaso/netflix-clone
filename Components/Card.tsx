@@ -24,14 +24,9 @@ const Card = ({
         console.error("error");
         setImgUrl("/static/logo/netflix.png");
     };
-    const classmap = {
-        large: "lgcards",
-        medium: "mdcards",
-        small: "smcards",
-    };
     return (
         <motion.div
-            className={`flex w-40 rounded-lg overflow-hidden relative shadow-lg  ${classmap[size]} `}
+            className={`flex w-full  aspect-video rounded-lg relative shadow-lg  `}
             initial={{
                 zIndex: 10,
             }}
@@ -39,6 +34,7 @@ const Card = ({
                 zIndex: 20,
                 scale: 1.1,
             }}
+
         >
             <Link
                 href={href}
@@ -47,11 +43,13 @@ const Card = ({
                     placeholder={"blur"}
                     blurDataURL={placeholderURL}
                     onError={Imageerrorhandler}
-                    className="object-cover"
+                    className="object-cover w-full"
                     src={ImgUrl}
-                    layout="fill"
+                    width={600}
+                    height={600}
                     alt={title + " Thumbail"}
                 />
+                <span>{title}</span>
             </Link>
         </motion.div>
     );

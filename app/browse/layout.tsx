@@ -1,8 +1,8 @@
 import {redirect} from "next/navigation";
-import {auth} from "@clerk/nextjs";
+import {auth} from "@clerk/nextjs/server";
 
-const Layout = ({children}) => {
-    const { userId } = auth();
+const Layout = async ({children}) => {
+    const { userId } = await auth();
     if (!userId) {
         redirect("/sign-in");
     }

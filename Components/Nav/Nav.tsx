@@ -1,8 +1,7 @@
 import React from "react";
 import Netflixlogo from "./Netflixlogo";
 import Listnav from "./Listnav";
-import {getServerSession} from "next-auth";
-import {auth, UserButton} from "@clerk/nextjs";
+import { UserButton} from "@clerk/nextjs";
 
 const Nav = async ({logoonly = false}) => {
 

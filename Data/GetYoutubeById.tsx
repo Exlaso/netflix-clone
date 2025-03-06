@@ -10,7 +10,6 @@ const GetYoutubeById = async (id) => {
     const res = await fetch(baseurl.href);
 
     const data = await res.json();
-    console.log({data})
     const arrofdata =  data?.items?.map((e) => {
       return {
         title: e?.snippet?.title,

@@ -4,7 +4,7 @@ import {Prisma} from "@prisma/client";
 
 
 
-export const updateLike = (user_id: string, updateLike: boolean, video_id: string) => {
+export const updateLike = async  (user_id: string, updateLike: boolean, video_id: string) => {
     return prisma.userstats.update({
         where: {
             user_id_video_id: {
