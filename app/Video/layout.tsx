@@ -1,11 +1,11 @@
-"use client"
-import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+    "use client"
+    import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
-const queryClient = new QueryClient();
-const Layout = ({children}) => {
+    const queryClient = new QueryClient();
+    const Layout = ({children}) => {
 
-    return <QueryClientProvider client={queryClient}>
-        {children}
-    </QueryClientProvider>
-}
-export default Layout;
+        return <QueryClientProvider client={queryClient}>
+            {children}
+        </QueryClientProvider>
+    }
+    export default Layout;
