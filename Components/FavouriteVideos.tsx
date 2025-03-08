@@ -20,6 +20,7 @@ const FavouriteVideos = ({data}: { data: getFavouriteVideosType }) => {
                         href={`/Video/${e.video.videoID}`}
                         imgurl={TMDB_IMAGE_PREFIX + "/" + e.video.Imgurl}
                         size="small"
+                        showNames={true}
                     ></Card>
                 );
             })}

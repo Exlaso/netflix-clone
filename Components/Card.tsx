@@ -12,21 +12,28 @@ const Card = ({
                   title = "/",
                   href = "#",
                   size = "medium",
+                  showNames
               }: {
     id: number,
     imgurl: string,
     title: string,
     href: string,
     size: string,
+    showNames?: boolean
 }) => {
     const [ImgUrl, setImgUrl] = useState(imgurl);
     const Imageerrorhandler = () => {
         console.error("error");
         setImgUrl("/static/logo/netflix.png");
     };
+    const classmap = {
+        large: "lgcards",
+        medium: "mdcards",
+        small: "smcards",
+    };
     return (
         <motion.div
-            className={`flex w-full  aspect-video rounded-lg relative shadow-lg  `}
+            className={`flex w-full  aspect-video rounded-lg relative shadow-lg ${classmap[size]}   `}
             initial={{
                 zIndex: 10,
             }}
@@ -49,7 +56,7 @@ const Card = ({
                     height={600}
                     alt={title + " Thumbail"}
                 />
-                <span>{title}</span>
+                {showNames && <span>{title}</span>}
             </Link>
         </motion.div>
     );
